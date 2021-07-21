@@ -10,9 +10,20 @@ let apiQuotes = [];
 function newQuote(){
     //Random quote
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-    authorText.textContent = quote.author;
+    //Author field
+    if (!quote.author) {
+        authorText.textContent = 'Unknown';
+    } else {
+            authorText.textContent = quote.author;
+        }
+    }
+    // Check quote length
+    if(quote.text.length > 50) {
+        quoteText.classList.add('long-quote');
+    } else {
+        quoteText.classList.remove('long-quote');
+    }
     quoteText.textContent = quote.text;
-}
 
 //Get Quotes fom API
 async function getQuotes(){
